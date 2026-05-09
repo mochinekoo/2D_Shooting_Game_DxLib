@@ -20,15 +20,22 @@ void RunningScene::Init() {
 	hBackground_ = LoadGraph("../../../Shader/TestTexture.png");
 	player = new Player();
 	player->Init();
+	enemyList.push_back(new Enemy());
 }
 
 void RunningScene::Update() {
 	player->Update();
+	for (Enemy* enemy : enemyList) {
+		enemy->Update();
+	}
 }
 
 void RunningScene::Draw() {
 	DrawGraph(0, 0, hBackground_, FALSE);
 	player->Draw();
+	for (Enemy* enemy : enemyList) {
+		enemy->Draw();
+	}
 }
 
 void RunningScene::Release() {

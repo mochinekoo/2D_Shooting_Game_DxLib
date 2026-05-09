@@ -29,6 +29,7 @@ void Bullet::Update() {
 
 void Bullet::Draw() {
 	DrawCircleAA(location_.x_, location_.y_, DRAW_RADIUS, DRAW_POSNUM, DRAW_COLOR);
+	DrawCircleAA(location_.x_, location_.y_, DRAW_RADIUS, DRAW_POSNUM + 30, DRAW_COLOR);
 }
 
 void Bullet::Release() {

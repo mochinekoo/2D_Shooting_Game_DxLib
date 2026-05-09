@@ -8,6 +8,7 @@ class Player : public BaseObject {
 private:
 	Location3D location_;
 	Vector3D vector_;
+	float bulletAngle_;
 public:
 	Player();
 	~Player();
