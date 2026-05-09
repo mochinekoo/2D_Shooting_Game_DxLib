@@ -1,9 +1,11 @@
 #pragma once
 #include <DxLib.h>
 #include "BaseScene.h"
+#include "../Object/Player.h"
 
 class RunningScene : public BaseScene {
 private:
+	Player* player;
 	int hBackground_;
 protected:
 public:
