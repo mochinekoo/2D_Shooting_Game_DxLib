@@ -1,3 +1,5 @@
+#pragma once
+
 #include <cmath>
 
 class Location3D {
