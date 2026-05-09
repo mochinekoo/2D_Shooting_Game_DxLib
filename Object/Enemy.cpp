@@ -3,7 +3,9 @@
 #include "../framework.h"
 
 namespace {
-	const unsigned int DRAW_COLOR = GetColor(245, 20, 20);
+	const unsigned int DRAW_COLOR = GetColor(0, 0, 20);
+	const unsigned int LINE_COLOR = GetColor(255, 255, 255);
+	const int LINE_SIZE = 10;
 	const int DRAW_RADIUS = 30;
 	const int DRAW_POSNUM = 30;
 	const float DEFAULT_SPEED = 5.0f;
@@ -22,22 +24,11 @@ void Enemy::Init() {
 }
 
 void Enemy::Update() {
-	if (CheckHitKey(KEY_INPUT_W)) {
-		location_.y_ -= vector_.y_;
-	}
-	if (CheckHitKey(KEY_INPUT_S)) {
-		location_.y_ += vector_.y_;
-	}
-	if (CheckHitKey(KEY_INPUT_A)) {
-		location_.x_ -= vector_.x_;
-	}
-	if (CheckHitKey(KEY_INPUT_D)) {
-		location_.x_ += vector_.x_;
-	}
 }
 
 void Enemy::Draw() {
 	DrawCircleAA(location_.x_, location_.y_, DRAW_RADIUS, DRAW_POSNUM, DRAW_COLOR);
+	DrawCircleAA(location_.x_, location_.y_, DRAW_RADIUS, DRAW_POSNUM + LINE_SIZE, LINE_COLOR, FALSE);
 }
 
 void Enemy::Release() {
