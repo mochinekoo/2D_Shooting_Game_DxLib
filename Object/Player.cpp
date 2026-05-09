@@ -1,12 +1,23 @@
 #include <DxLib.h>
 #include "Player.h"
 #include "../framework.h"
+#include <vector>
+#include "Bullet.h"
+#include "../Library/Location.hpp"
+#include "../Library/Vector.hpp"
 
 namespace {
 	const unsigned int DRAW_COLOR = GetColor(245, 20, 20);
 	const int DRAW_RADIUS = 30;
 	const int DRAW_POSNUM = 30;
 	const float DEFAULT_SPEED = 5.0f;
+
+	std::vector<Bullet*> bulletList;
+}
+
+bool IsArea(Location3D location) {
+	return 0 <= location.x_ && location.x_ <= GameScreen::WIDTH &&
+		0 <= location.y_ && location.y_ <= GameScreen::HEIGHT;
 }
 
 Player::Player()
@@ -16,6 +27,9 @@ Player::Player()
 }
 
 Player::~Player() {
+	for (Bullet* bullet : bulletList) {
+		delete bullet;
+	}
 }
 
 void Player::Init() {
@@ -34,10 +48,24 @@ void Player::Update() {
 	if (CheckHitKey(KEY_INPUT_D)) {
 		location_.x_ += vector_.x_;
 	}
+	if (CheckHitKey(KEY_INPUT_SPACE)) {
+		Bullet* bullet = new Bullet(location_, vector_);
+		bulletList.push_back(bullet);
+	}
+
+	for (Bullet* bullet : bulletList) {
+		if (bullet == nullptr) continue;
+		bullet->Update();
+	}
 }
 
 void Player::Draw() {
 	DrawCircleAA(location_.x_, location_.y_, DRAW_RADIUS, DRAW_POSNUM, DRAW_COLOR);
+
+	for (Bullet* bullet : bulletList) {
+		if (bullet == nullptr) continue;
+		bullet->Draw();
+	}
 }
 
 void Player::Release() {

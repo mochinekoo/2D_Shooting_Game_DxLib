@@ -4,13 +4,13 @@
 #include "../Library/Location.hpp"
 #include "../Library/Vector.hpp"
 
-class Player : public BaseObject {
+class Bullet : public BaseObject {
 private:
 	Location3D location_;
 	Vector3D vector_;
 public:
-	Player();
-	~Player();
+	Bullet(const Location3D& location, const Vector3D& vector);
+	~Bullet();
 	void Init() override;
 	void Update() override;
 	void Draw() override;
