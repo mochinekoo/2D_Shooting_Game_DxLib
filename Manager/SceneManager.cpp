@@ -3,6 +3,7 @@
 #include "SceneManager.h"
 #include "../Scene/BaseScene.h"
 #include "../Scene/RootScene.h"
+#include "../Scene/RunningScene.h"
 
 namespace {
 	BaseScene* currentScene_ = nullptr;
@@ -14,6 +15,10 @@ namespace SceneFactory {
 	RootScene* CreateRootScene() {
 		return new RootScene();
 	}
+
+	RunningScene* CreateRunningScene() {
+		return new RunningScene();
+	}
 }
 
 namespace SceneManager {
@@ -22,8 +27,10 @@ namespace SceneManager {
 		sceneMap.clear();
 		// sceneMap.insert(std::make_pair("RootScene", new RootScene()));
 		sceneMap.insert(std::make_pair("RootScene", SceneFactory::CreateRootScene()));
+		sceneMap.insert(std::make_pair("RunningScene", SceneFactory::CreateRunningScene()));
 
 		ChangeScene("RootScene");
+		ChangeScene("RunningScene");
 		return 0;
 	}
 

@@ -2,12 +2,13 @@
 #include <DxLib.h>
 #include "BaseScene.h"
 
-class RootScene : public BaseScene {
+class RunningScene : public BaseScene {
 private:
+	int hBackground_;
 protected:
 public:
-	RootScene();
-	~RootScene();
+	RunningScene();
+	~RunningScene();
 
 	void Init() override;
 	void Update() override;
